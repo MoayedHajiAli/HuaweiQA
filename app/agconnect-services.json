@@ -1,0 +1,14 @@
+{
+	"client":{
+		"appType":"1",
+		"cp_id":"5190090000028612691",
+		"product_id":"736430079244733143",
+		"client_id":"513254346591318656",
+		"client_secret":"A53EE38EFE6EC189E4FB00974089BC6D4C948695CFE389DFB4C5AFAC0C2EC9C2",
+		"project_id":"736430079244733143",
+		"app_id":"103447907",
+		"api_key":"CgB6e3x9eKSPDO04bT42bgTI9qBwGzCqBm3l66qWp+4+Raf7b9sRV/bKv5O7aLJufYyg13FA0nvaJns1wXv6nsUH",
+		"package_name":"com.mali.huaweiqa"
+	},
+	"configuration_version":"1.0"
+}

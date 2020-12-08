@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/question_body"
+        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp">
+
+    </TextView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="30dp"
+        android:text="Sample choice 1"
+        android:id="@+id/first_choice">
+
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="30dp"
+        android:text="Sample choice 2"
+        android:id="@+id/second_choice">
+
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="30dp"
+        android:text="Sample choice 3"
+        android:id="@+id/third_choice">
+
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0091EA"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_marginBottom="30dp"
+        android:text="Sample choice 4"
+        android:id="@+id/fourth_choice">
+
+    </Button>
+
+</LinearLayout>
