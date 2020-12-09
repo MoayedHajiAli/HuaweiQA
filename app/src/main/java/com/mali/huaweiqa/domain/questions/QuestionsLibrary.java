@@ -21,11 +21,15 @@ public class QuestionsLibrary {
         return _instance;
     }
 
-    private void addCategory(QuestionsCategory category){
+    public void addCategory(QuestionsCategory category){
         this.categories.add(category);
     }
 
-    private void addCategory(String categoryTitle){
+    public void addCategory(String categoryTitle){
         this.categories.add(new QuestionsCategory(categoryTitle));
+    }
+
+    public ArrayList<QuestionsCategory> getCategories() {
+        return categories;
     }
 }

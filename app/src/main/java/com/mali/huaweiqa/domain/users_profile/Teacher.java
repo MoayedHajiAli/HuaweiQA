@@ -13,6 +13,8 @@ public class Teacher extends User{
 
     public  Teacher(String name, File imgFile){
         super(name, imgFile);
+        this.students = new ArrayList<>();
+        this.pendingRequests = new ArrayList<>();
     }
 
     public void addStudentRequest(Student student){
@@ -24,7 +26,15 @@ public class Teacher extends User{
     }
 
     public boolean approveStudent(Student student){
-        return  this.students.add(student);
+        if(this.pendingRequests.contains(student)) {
+            this.pendingRequests.remove(student);
+            this.students.add(student);
+            return true;
+        }
+        return false;
     }
 
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
 }

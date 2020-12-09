@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.mali.huaweiqa.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_students"
+        android:name="com.mali.huaweiqa.ui.teacher.TeacherFragment"
+        android:label="@string/menu_students"
+        tools:layout="@layout/teacher_main" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.mali.huaweiqa.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_categories"
+        android:name="com.mali.huaweiqa.ui.categories.CategoryFragment"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_catefory" />
 </navigation>

@@ -10,4 +10,11 @@ public class Student extends User{
         super(name, imgFile);
     }
 
+    public void setTotalScore(Integer totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public Integer getTotalScore() {
+        return totalScore;
+    }
 }
