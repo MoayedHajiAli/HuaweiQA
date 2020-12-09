@@ -13,6 +13,7 @@ public class QuestionsCategory {
 
     public QuestionsCategory(String categoryTitle) {
         this.categoryTitle = categoryTitle;
+        this.categoryQuestions = new ArrayList<>();
     }
 
     public String getCategoryTitle() {

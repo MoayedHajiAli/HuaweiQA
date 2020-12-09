@@ -9,14 +9,14 @@ public class Question {
 
     private String questionBody;
     private ArrayList<String> choices;
-    private String correctAnswers;
+    private Integer correctAnswer;
     Integer score;
 
 
-    public Question(String questionBody, ArrayList<String> choices, String correctAnswers, Integer score) {
+    public Question(String questionBody, ArrayList<String> choices, Integer correctAnswer, Integer score) {
         this.questionBody = questionBody;
         this.choices = choices;
-        this.correctAnswers = correctAnswers;
+        this.correctAnswer = correctAnswer;
         this.score = score;
     }
 
@@ -29,7 +29,7 @@ public class Question {
     }
 
     public String getCorrectAnswers() {
-        return correctAnswers;
+        return choices.get(this.correctAnswer);
     }
 
     public Integer getScore() {

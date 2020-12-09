@@ -22,4 +22,10 @@
         android:name="com.mali.huaweiqa.ui.categories.CategoryFragment"
         android:label="@string/menu_categories"
         tools:layout="@layout/fragment_catefory" />
+
+    <fragment
+        android:id="@+id/nav_questions"
+        android:name="com.mali.huaweiqa.ui.questions.QuestionsListFragment"
+        android:label="@string/menu_questions"
+        tools:layout="@layout/fragment_question_view" />
 </navigation>

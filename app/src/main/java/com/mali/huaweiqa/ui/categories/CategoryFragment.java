@@ -4,17 +4,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.Question;
 import com.mali.huaweiqa.domain.questions.QuestionsCategory;
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
+import com.mali.huaweiqa.ui.gallery.GalleryFragment;
+import com.mali.huaweiqa.ui.home.HomeFragment;
+import com.mali.huaweiqa.ui.teacher.TeacherFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +33,7 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        // add dummy categories
+        // add fixture categories
         QuestionsLibrary.getInstance().addCategory("Science");
         QuestionsLibrary.getInstance().addCategory("Programming");
         QuestionsLibrary.getInstance().addCategory("Art");
@@ -40,6 +47,7 @@ public class CategoryFragment extends Fragment {
         final ListView categoriesList = root.findViewById(R.id.category_list);
         final CategoryListAdapter adapter = new CategoryListAdapter(getActivity().getBaseContext());
 
+        // retrieve data on changes
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), new Observer<ArrayList<QuestionsCategory>>() {
             @Override
             public void onChanged(ArrayList<QuestionsCategory> categories) {
@@ -48,6 +56,22 @@ public class CategoryFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
+
+        // move to the list of questions upon the click on the category
+        categoriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                System.out.println("Item: " + position + "was clicked");
+                Bundle bundle = new Bundle();
+                bundle.putInt("CategoryIndex", position);
+                Navigation.findNavController(view).navigate(R.id.nav_questions, bundle);
+            }});
         return root;
     }
+
+
+
 }
