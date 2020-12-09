@@ -36,8 +36,17 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.2'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation('com.huawei.hms:hwid:5.0.5.300')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    //HMS
+    implementation('com.huawei.hms:hwid:5.0.5.300')
+
+    //recycle view
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    //round image view
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

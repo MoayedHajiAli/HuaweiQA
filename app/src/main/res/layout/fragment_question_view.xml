@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="150dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:id="@+id/layoutQuestionView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal">
 
+
     <TextView
-        android:id="@+id/question_lst_body"
+        android:id="@+id/questionListBody"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/design_default_color_background"
         android:paddingLeft="10dp"
         android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur"
-        android:background="@color/design_default_color_background"
-        android:textSize="22sp"></TextView>
+        android:textSize="22sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"></TextView>
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/isSelectedQuestion"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="50dp"
+        android:src="@drawable/ic_selection_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/questionListBody"
+        app:layout_constraintEnd_toEndOf="@+id/questionListBody" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
