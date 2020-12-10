@@ -1,16 +1,15 @@
-package com.mali.huaweiqa.ui.teacher;
+package com.mali.huaweiqa.ui.Students;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.users_profile.Student;
@@ -18,9 +17,9 @@ import com.mali.huaweiqa.domain.users_profile.Teacher;
 
 import java.util.ArrayList;
 
-public class TeacherFragment extends Fragment {
+public class StudentFragment extends Fragment {
 
-    private TeacherViewModel teacherViewModel;
+    private StudentViewModel teacherViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,10 +59,10 @@ public class TeacherFragment extends Fragment {
 
 
         teacherViewModel =
-                new ViewModelProvider(this).get(TeacherViewModel.class);
-        View root = inflater.inflate(R.layout.teacher_main, container, false);
-        final ListView studentsList = root.findViewById(R.id.students_list);
-        final StudentListAdapter adapter = new StudentListAdapter(getActivity().getBaseContext());
+                new ViewModelProvider(this).get(StudentViewModel.class);
+        View root = inflater.inflate(R.layout.student_main, container, false);
+        final RecyclerView studentsList = root.findViewById(R.id.students_list);
+        final StudentListAdapter adapter = new StudentListAdapter(true);
 
         teacherViewModel.getStudents(teacher).observe(getViewLifecycleOwner(), new Observer<ArrayList<Student>>() {
             @Override

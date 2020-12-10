@@ -9,22 +9,15 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.questions.Question;
 import com.mali.huaweiqa.domain.questions.QuestionsCategory;
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
-import com.mali.huaweiqa.ui.gallery.GalleryFragment;
-import com.mali.huaweiqa.ui.home.HomeFragment;
-import com.mali.huaweiqa.ui.teacher.TeacherFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CategoryFragment extends Fragment {
 
