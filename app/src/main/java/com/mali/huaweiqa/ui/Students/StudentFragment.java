@@ -62,7 +62,7 @@ public class StudentFragment extends Fragment {
                 new ViewModelProvider(this).get(StudentViewModel.class);
         View root = inflater.inflate(R.layout.student_main, container, false);
         final RecyclerView studentsList = root.findViewById(R.id.students_list);
-        final StudentListAdapter adapter = new StudentListAdapter(true);
+        final StudentListAdapter adapter = new StudentListAdapter(false);
 
         teacherViewModel.getStudents(teacher).observe(getViewLifecycleOwner(), new Observer<ArrayList<Student>>() {
             @Override
