@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.Question;
+import com.mali.huaweiqa.ui.Students.StudentsDialogFragment;
 
 import java.util.ArrayList;
 
@@ -60,7 +61,8 @@ public class QuestionsListFragment extends Fragment implements QuestionsListAdap
         makeQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                StudentsDialogFragment studentListDialog = new StudentsDialogFragment();
+                studentListDialog.show(getParentFragmentManager(),"StudentListDialoge");
             }
         });
         return root;

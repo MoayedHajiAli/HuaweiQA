@@ -30,6 +30,10 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         this.students = students;
     }
 
+    public ArrayList<Student> getSelectedStudents() {
+        return new ArrayList<Student>(this.selectedStudents);
+    }
+
     @NonNull
     @Override
     public StudentListAdapter.StudentListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
