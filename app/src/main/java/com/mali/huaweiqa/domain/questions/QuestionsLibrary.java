@@ -1,19 +1,46 @@
 package com.mali.huaweiqa.domain.questions;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Locale;
-
 /**
  * A singleton library that hold all questions categories in the application.
  */
 public class QuestionsLibrary {
     private static QuestionsLibrary _instance;
-    private ArrayList<QuestionsCategory> categories;
+    private String CATEGORIES_LIST = "CATEGORIES_LIST";
+    private String QUESTIONS_LIST = "QUESTIONS_LIST";
+    private final FirebaseDatabase database;
+    private final DatabaseReference categoryRef;
+    private CategoryListHelper categories;
 
-    private QuestionsLibrary(){
-        this.categories = new ArrayList<>();
+    private QuestionsLibrary() {
+        this.categories = new CategoryListHelper();
+        // retrieve the categories list from DB.
+        database = FirebaseDatabase.getInstance();
+        categoryRef = database.getReference().child(CATEGORIES_LIST);
+
+        categoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                categories = dataSnapshot.getValue(CategoryListHelper.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Database:onCancelled", databaseError.toException());
+            }
+        });
+        categoryRef.push();
     }
 
     public static QuestionsLibrary getInstance(){
@@ -24,37 +51,23 @@ public class QuestionsLibrary {
     }
 
     public void addCategory(QuestionsCategory category){
-        this.categories.add(category);
+        this.categories.getCategories().add(category);
     }
 
     public void addCategory(String categoryTitle){
         QuestionsCategory category = new QuestionsCategory(categoryTitle);
-        this.categories.add(category);
-        // TODO: remove adding fixture questions
-        Question question = new Question(
-                categoryTitle + "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque ",
-                new ArrayList<String>(Arrays.asList("Choice1", "Choice2", "Choice3", "Choice4")),0, 40);
-        category.addQuestion(question);
-        question = new Question(
-                categoryTitle + "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque ",
-                new ArrayList<String>(Arrays.asList("dog", "cat", "elephant", "crocadile")),0, 40);
-        category.addQuestion(question);
-        question = new Question(
-                categoryTitle + "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque ",
-                new ArrayList<String>(Arrays.asList("A", "B", "C", "D")),0, 40);
-        category.addQuestion(question);
-        question = new Question(
-                categoryTitle + "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque ",
-                new ArrayList<String>(Arrays.asList("1", "2", "3", "4")),0, 40);
-        category.addQuestion(question);
+        this.categories.getCategories().add(category);
+        // update the categories
+        categoryRef.setValue(categories);
+        Log.i("Database:update", "Categories update in DB");
     }
 
     public ArrayList<QuestionsCategory> getCategories() {
-        return categories;
+        return categories.getCategories();
     }
 
     public QuestionsCategory getCategory(String title){
-        for (QuestionsCategory category : categories){
+        for (QuestionsCategory category : categories.getCategories()){
             if(category.getCategoryTitle().equals(title))
                 return category;
         }
@@ -62,7 +75,7 @@ public class QuestionsLibrary {
     }
 
     public QuestionsCategory getCategory(int ind){
-        return this.categories.get(ind);
+        return this.categories.getCategories().get(ind);
     }
 
     public void addQuestion(String categoryTitle, Question question){

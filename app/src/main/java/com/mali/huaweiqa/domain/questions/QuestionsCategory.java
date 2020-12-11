@@ -11,6 +11,7 @@ public class QuestionsCategory {
     private String categoryTitle;
     private ArrayList<Question> categoryQuestions;
 
+    public QuestionsCategory(){}
     public QuestionsCategory(String categoryTitle) {
         this.categoryTitle = categoryTitle;
         this.categoryQuestions = new ArrayList<>();

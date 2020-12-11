@@ -12,7 +12,9 @@ public class Question {
     private Integer correctAnswer;
     Integer score;
 
+    public Question(){
 
+    }
     public Question(String questionBody, ArrayList<String> choices, Integer correctAnswer, Integer score) {
         this.questionBody = questionBody;
         this.choices = choices;
@@ -34,5 +36,21 @@ public class Question {
 
     public Integer getScore() {
         return score;
+    }
+
+    public void setQuestionBody(String questionBody) {
+        this.questionBody = questionBody;
+    }
+
+    public void setChoices(ArrayList<String> choices) {
+        this.choices = choices;
+    }
+
+    public void setCorrectAnswer(Integer correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 }
