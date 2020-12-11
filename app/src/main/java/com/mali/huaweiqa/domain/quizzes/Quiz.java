@@ -1,5 +1,7 @@
-package com.mali.huaweiqa.domain.questions;
+package com.mali.huaweiqa.domain.quizzes;
 
+
+import com.mali.huaweiqa.domain.questions.Question;
 
 import java.util.ArrayList;
 import java.util.Random;

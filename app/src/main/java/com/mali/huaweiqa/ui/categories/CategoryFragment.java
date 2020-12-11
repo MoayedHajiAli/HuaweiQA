@@ -25,15 +25,6 @@ public class CategoryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        // add fixture categories
-        QuestionsLibrary.getInstance().addCategory("Science");
-        QuestionsLibrary.getInstance().addCategory("Programming");
-        QuestionsLibrary.getInstance().addCategory("Art");
-        QuestionsLibrary.getInstance().addCategory("Math");
-        QuestionsLibrary.getInstance().addCategory("Physics");
-        QuestionsLibrary.getInstance().addCategory("General");
-
         categoryViewModel =
                 new ViewModelProvider(this).get(CategoryViewModel.class);
         View root = inflater.inflate(R.layout.category_main, container, false);
