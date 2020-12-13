@@ -1,4 +1,4 @@
-package com.mali.huaweiqa.ui;
+package com.mali.huaweiqa.ui.main_activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class TeacherMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
