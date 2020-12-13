@@ -11,5 +11,11 @@
     <string name="menu_students">Students</string>
     <string name="menu_categories">Categories</string>
     <string name="menu_questions">Questions</string>
+    <string name="choice1">First Choice</string>
+    <string name="choice2">Second Choice</string>
+    <string name="choice3">Third Choice</string>
+    <string name="choice4">Fourth Choice</string>
+    <string name="question_body">Question body</string>
+
 
 </resources>

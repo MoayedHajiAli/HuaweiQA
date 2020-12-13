@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "98755260766",
+    "project_id": "capable-asset-140301",
+    "storage_bucket": "capable-asset-140301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98755260766:android:0a3518da0ff10bac795fcf",
+        "android_client_info": {
+          "package_name": "com.mali.huaweiqa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98755260766-915084ck33neveqeobeeileuuqthpqg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKgSwjz1Zl5Jp4Lhn4_cmLVy7eYwQhOAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98755260766-915084ck33neveqeobeeileuuqthpqg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
