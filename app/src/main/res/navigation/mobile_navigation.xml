@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_students">
+    app:startDestination="@+id/nav_login">
 
     <fragment
         android:id="@+id/nav_quizzes"
@@ -34,4 +34,17 @@
         android:name="com.mali.huaweiqa.ui.quizzes.QuizFragment"
         android:label="@string/menu_questions"
         tools:layout="@layout/fragment_question" />
+
+    <fragment
+        android:id="@+id/nav_signUp"
+        android:name="com.mali.huaweiqa.ui.signup.SignupFragment"
+        android:label="signUp"
+        tools:layout="@layout/signup_main" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.mali.huaweiqa.ui.signup.LoginFragment"
+        android:label="signUp"
+        tools:layout="@layout/login_main" />
+
 </navigation>

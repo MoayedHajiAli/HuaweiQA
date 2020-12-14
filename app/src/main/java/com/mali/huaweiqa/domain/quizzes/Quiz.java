@@ -12,7 +12,7 @@ import java.util.Random;
  * It will produce the questions in a random order.
  */
 
-public class Quiz {
+public class Quiz implements Serializable{
     // duration of the quiz
     private Integer duration;
     private ArrayList<Question> questions;
@@ -68,4 +68,6 @@ public class Quiz {
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
+
+
 }

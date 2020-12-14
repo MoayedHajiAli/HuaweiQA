@@ -10,8 +10,7 @@ import android.widget.TextView;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.QuestionsCategory;
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
-import com.mali.huaweiqa.domain.users_profile.Student;
-
+import com.mali.huaweiqa.domain.Students_profile.Student;
 import java.util.ArrayList;
 import java.util.Locale;
 

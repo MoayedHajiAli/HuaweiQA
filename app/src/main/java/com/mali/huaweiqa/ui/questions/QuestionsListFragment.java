@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.Question;
+import com.mali.huaweiqa.domain.quizzes.Quiz;
 import com.mali.huaweiqa.ui.Students.StudentsDialogFragment;
 
 import java.util.ArrayList;
 
-public class QuestionsListFragment extends Fragment implements QuestionsListAdapter.QuestionListener, QuestionFormDialog.newQuestionListener {
+public class QuestionsListFragment extends Fragment implements QuestionsListAdapter.QuestionListener {
 
     private QuestionsListViewModel questionsViewModel;
 
@@ -63,22 +64,13 @@ public class QuestionsListFragment extends Fragment implements QuestionsListAdap
         makeQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StudentsDialogFragment studentListDialog = new StudentsDialogFragment();
+                ArrayList<Question> questions = adapter.getSelectedQuestions();
+                Bundle bundle = new Bundle();
+                StudentsDialogFragment studentListDialog = new StudentsDialogFragment( new Quiz(300, questions));
                 studentListDialog.show(getParentFragmentManager(),"StudentListDialog");
             }
         });
 
-        //make the fab visible
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setVisibility(View.VISIBLE);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                QuestionFormDialog questionForm = new QuestionFormDialog();
-                questionForm.setTargetFragment(QuestionsListFragment.this, 1);
-                questionForm.show(getParentFragmentManager(), "QuestionFormDialog");
-            }
-        });
 
         return root;
     }
@@ -91,10 +83,5 @@ public class QuestionsListFragment extends Fragment implements QuestionsListAdap
         else{
             makeQuizButton.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void onNewQuestion(String questionBody, ArrayList<String> choices, int correctChoice) {
-        System.out.println(questionBody);
     }
 }

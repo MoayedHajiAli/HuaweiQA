@@ -10,7 +10,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mali.huaweiqa.R;
+import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 import java.util.ArrayList;
 
@@ -18,9 +20,7 @@ public class QuizListFragment extends Fragment {
     private QuizListViewModel quizListViewModel;
     private RecyclerView quizList;
     private QuizListAdapter adapter;
-
-    // TODO: get User ID
-    String ID = "1234";
+    private Student student;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,9 +30,11 @@ public class QuizListFragment extends Fragment {
         View root = inflater.inflate(R.layout.quiz_list_main, container, false);
         quizList = root.findViewById(R.id.quizList);
         adapter = new QuizListAdapter();
+        student = (Student) getArguments().getSerializable("User");
+
 
         // retrieve data on changes
-        quizListViewModel.getQuizzes(ID).observe(getViewLifecycleOwner(), new Observer<ArrayList<Quiz>>() {
+        quizListViewModel.getQuizzes(student).observe(getViewLifecycleOwner(), new Observer<ArrayList<Quiz>>() {
             @Override
             public void onChanged(ArrayList<Quiz> quizzes) {
                 ArrayList<Quiz> unTakenQuizzes = new ArrayList<>();
@@ -41,7 +43,6 @@ public class QuizListFragment extends Fragment {
                     if(!quiz.isTaken())
                         unTakenQuizzes.add(quiz);
                 }
-
                 adapter.setQuizzes(unTakenQuizzes);
                 quizList.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.mali.huaweiqa.domain.quizzes.Quiz;
 import com.mali.huaweiqa.domain.quizzes.QuizLibrary;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 import java.util.ArrayList;
 
@@ -13,15 +14,15 @@ public class QuizListViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Quiz>> quizzes;
 
-    public LiveData<ArrayList<Quiz>> getQuizzes(String ID) {
+    public LiveData<ArrayList<Quiz>> getQuizzes(Student student) {
         if (quizzes == null) {
             quizzes = new MutableLiveData<ArrayList<Quiz>>();
-            loadQuizzes(ID);
+            loadQuizzes(student);
         }
         return quizzes;
     }
 
-    private void loadQuizzes(String ID) {
-        quizzes.setValue(QuizLibrary.getInstance(ID).getQuizzes());
+    private void loadQuizzes(Student student) {
+        quizzes.setValue(student.getQuizzes());
     }
 }

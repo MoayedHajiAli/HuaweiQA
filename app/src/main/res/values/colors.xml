@@ -10,7 +10,23 @@
     <color name="colorIcon">#FFFFFF</color>
     <color name="colorTextSecondary">#757575</color>
     <color name="colorTextPrimary">#212121</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimaryDark">#0F8CDA</color>
+    <color name="colorPrimaryDarkVariant">#2980B6</color>
+
+    <color name="colorPrimary">#5EF3BE</color>
+    <color name="colorPrimaryVariant">#73D8B4</color>
+    <color name="colorAccent">#d4e517</color>
+
+    <color name="buttonColor">#5EF3BE</color>
+    <color name="skillTagText">@android:color/white</color>
+    <color name="baseColor">#f7f7f7</color>
+
+    <color name="skillTagBackGround">#d4e517</color>
+    <color name="textWithDarkBackground">@android:color/white</color>
+    <color name="subText">#2C2C2C</color>
+    <color name="mainText">#666666</color>
+
+    <color name="lightGray">#d8d8d8</color>
 </resources>
+
