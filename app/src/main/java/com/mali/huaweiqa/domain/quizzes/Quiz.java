@@ -15,10 +15,12 @@ public class Quiz {
     // duration of the quiz
     private Integer duration;
     private ArrayList<Question> questions;
+    private boolean isTaken;
 
     public Quiz(Integer duration, ArrayList<Question> questions) {
         this.duration = duration;
         this.questions = questions;
+        this.isTaken = false;
     }
 
     /**
@@ -36,5 +38,21 @@ public class Quiz {
      */
     public boolean hasNextQuestion(){
         return questions.size() > 0;
+    }
+
+    public Integer questionTotal(){
+        return this.questions.size();
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setTaken(boolean taken) {
+        isTaken = taken;
+    }
+
+    public boolean isTaken() {
+        return isTaken;
     }
 }
