@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.huawei.hms.support.api.entity.hwid.HuaweiIdSignInRequest;
 import com.mali.huaweiqa.R;
+import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,6 +25,9 @@ public class TeacherMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: For now call the getInstance in order to load the data
+        QuestionsLibrary.getInstance();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -32,6 +36,7 @@ public class TeacherMainActivity extends AppCompatActivity {
         fab.setVisibility(View.GONE);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
