@@ -62,18 +62,16 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                 chosenAnswer = 4;
                 break;
         }
-        quizSession.evaluateAnswer(chosenAnswer);
-
-        if(quizSession.isFinished()){
+        if(!quizSession.isFinished()){
             // update the fields to the next question
             System.out.println("Starting a new question");
+            quizSession.evaluateAnswer(chosenAnswer);
             updateFields(quizSession.nextQuestion());
         }
         else{
             // finish the quiz
-            Toast.makeText(getContext(), "You score is" + String.valueOf(quizSession.getScore()), Toast.LENGTH_SHORT).show();
-            System.out.println(quizSession.getScore());
-            getActivity().getFragmentManager().popBackStack();
+            Toast.makeText(getContext(), "You score is " + String.valueOf(quizSession.getScore()), Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
 
     }

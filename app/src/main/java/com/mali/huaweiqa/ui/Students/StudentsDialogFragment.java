@@ -73,7 +73,7 @@ public class StudentsDialogFragment extends DialogFragment {
         final StudentListAdapter adapter = new StudentListAdapter(true);
         bConfirm = root.findViewById(R.id.quizConfirmation);
 
-        teacherViewModel.getStudents(teacher).observe(getViewLifecycleOwner(), new Observer<ArrayList<Student>>() {
+        teacherViewModel.getStudents().observe(getViewLifecycleOwner(), new Observer<ArrayList<Student>>() {
             @Override
             public void onChanged(ArrayList<Student> students) {
                 adapter.setStudents(students);

@@ -24,7 +24,7 @@ public class QuizSession implements Serializable {
     }
 
     public boolean isFinished(){
-        return quiz.hasNextQuestion() && getRemainingTime() > 0;
+        return !quiz.hasNextQuestion() || getRemainingTime() < 0;
     }
 
     public Question nextQuestion(){

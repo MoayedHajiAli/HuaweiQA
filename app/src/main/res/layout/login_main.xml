@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_xml">
 
+    <com.google.android.material.navigation.NavigationView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/signUp_nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="150dp"
@@ -98,22 +109,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hms_login" />
-
-    <TextView
-        android:id="@+id/forgot_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/josefin_bold"
-        android:text="@string/text_forgot_password"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
