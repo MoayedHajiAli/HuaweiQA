@@ -1,5 +1,6 @@
 package com.mali.huaweiqa.domain.questions;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.huawei.hms.hwid.A;
+import com.mali.huaweiqa.R;
+import com.mali.huaweiqa.domain.utils.QuestionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +45,8 @@ public class QuestionsLibrary {
             }
         });
         categoryRef.push();
-    }
 
+    }
     public static QuestionsLibrary getInstance(){
         if(_instance == null){
             _instance = new QuestionsLibrary();
@@ -52,6 +56,7 @@ public class QuestionsLibrary {
 
     public void addCategory(QuestionsCategory category){
         this.categories.getCategories().add(category);
+        categoryRef.setValue(categories);
     }
 
     public void addCategory(String categoryTitle){
@@ -80,5 +85,6 @@ public class QuestionsLibrary {
 
     public void addQuestion(String categoryTitle, Question question){
         this.getCategory(categoryTitle).addQuestion(question);
+        categoryRef.setValue(categories);
     }
 }

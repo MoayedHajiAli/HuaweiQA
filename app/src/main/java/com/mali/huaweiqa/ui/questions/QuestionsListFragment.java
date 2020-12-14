@@ -32,7 +32,7 @@ public class QuestionsListFragment extends Fragment implements QuestionsListAdap
 
         questionsViewModel =
                 new ViewModelProvider(this).get(QuestionsListViewModel.class);
-        View root = inflater.inflate(R.layout.quiz_list_main, container, false);
+        View root = inflater.inflate(R.layout.quiz_creation_main, container, false);
         questionsList = root.findViewById(R.id.questionListView);
         makeQuizButton = root.findViewById(R.id.makeQuiz);
         adapter = new QuestionsListAdapter(this);

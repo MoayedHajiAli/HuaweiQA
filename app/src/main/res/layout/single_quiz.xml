@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:id="@+id/layoutQuizView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/studentViewBackground"
+        android:background="@drawable/student_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--    <com.makeramen.roundedimageview.RoundedImageView-->
+    <!--        android:layout_width="90dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginStart="15dp"-->
+    <!--        android:id="@+id/studentImg"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        android:src="@drawable/hwid_auth_button_normal"-->
+    <!--        android:scaleType="centerInside"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:riv_border_color="@color/emui_color_gray_1"-->
+    <!--        app:riv_corner_radius="20dp">-->
+    <!--    </com.makeramen.roundedimageview.RoundedImageView>-->
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/CategoryImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/hwid_auth_button_normal"
+        android:scaleType="centerInside"
+        android:background="@color/black"/>
+    <TextView
+        android:id="@+id/quizQuestionNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CategoryImg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="20 Questions"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/quizDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CategoryImg"
+        app:layout_constraintTop_toBottomOf="@id/quizQuestionNum"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Score: 40"
+        android:textSize="15sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

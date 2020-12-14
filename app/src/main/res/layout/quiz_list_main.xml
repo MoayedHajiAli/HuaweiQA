@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/questionListView"
+        android:id="@+id/quizList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:padding="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/makeQuiz"
         app:layout_constraintTop_toTopOf="parent"
-        ></androidx.recyclerview.widget.RecyclerView>
+        />
 
-    <Button
-        android:id="@+id/makeQuiz"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/black"
-        android:text="Create Quiz"
-        android:textSize="25sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp">
-
-    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

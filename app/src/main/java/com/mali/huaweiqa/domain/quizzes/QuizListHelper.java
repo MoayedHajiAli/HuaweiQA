@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class QuizListHelper {
 
-    ArrayList<Quiz> quizzes;
+    private ArrayList<Quiz> quizzes;
 
-    QuizListHelper(){}
+    public QuizListHelper(){
+        this.quizzes = new ArrayList<>();
+    }
 
     public QuizListHelper(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -18,5 +20,9 @@ public class QuizListHelper {
 
     public void setQuizzes(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
+    }
+
+    public void addQuiz(Quiz quiz){
+        this.quizzes.add(quiz);
     }
 }

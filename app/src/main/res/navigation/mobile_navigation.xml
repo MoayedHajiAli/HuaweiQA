@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_students">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.mali.huaweiqa.ui.home.HomeFragment"
+        android:id="@+id/nav_quizzes"
+        android:name="com.mali.huaweiqa.ui.quizzes.QuizListFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/quiz_list_main" />
 
     <fragment
         android:id="@+id/nav_students"
@@ -28,4 +28,10 @@
         android:name="com.mali.huaweiqa.ui.questions.QuestionsListFragment"
         android:label="@string/menu_questions"
         tools:layout="@layout/fragment_question_view" />
+
+    <fragment
+        android:id="@+id/nav_quiz_questions"
+        android:name="com.mali.huaweiqa.ui.quizzes.QuizFragment"
+        android:label="@string/menu_questions"
+        tools:layout="@layout/fragment_question" />
 </navigation>
