@@ -1,5 +1,6 @@
 package com.mali.huaweiqa.ui.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 
+import com.huawei.hms.common.ApiException;
+import com.huawei.hmf.tasks.OnCompleteListener;
+import com.huawei.hmf.tasks.OnFailureListener;
+import com.huawei.hmf.tasks.OnSuccessListener;
+import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.support.hwid.HuaweiIdAuthManager;
 import com.huawei.hms.support.hwid.request.HuaweiIdAuthParams;
 import com.huawei.hms.support.hwid.request.HuaweiIdAuthParamsHelper;
+import com.huawei.hms.support.hwid.result.AuthHuaweiId;
 import com.huawei.hms.support.hwid.service.HuaweiIdAuthService;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
@@ -29,9 +35,8 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
     public static final String TAG = "LoginActivity";
     private HuaweiIdAuthService mAuthManager;
     private HuaweiIdAuthParams mAuthParam;
-    private AppBarConfiguration mAppBarConfiguration;
 
-    private Button loginBT, HMSLoginBT;
+    private TextView loginBT, HMSLoginBT;
     private TextView signUpTV;
     private EditText emailET, passwordET;
 
@@ -70,16 +75,56 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
             }
         });
 
-        return root;
-    }
-
-    private void signIn() {
         mAuthParam = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
                 .setIdToken()
                 .setAccessToken()
                 .createParams();
-        mAuthManager = HuaweiIdAuthManager.getService(getContext(), mAuthParam);
+
+        return root;
     }
+
+    private void signIn() {
+        mAuthManager = HuaweiIdAuthManager.getService(getContext(), mAuthParam);
+        Task<AuthHuaweiId> signInTask = mAuthManager.silentSignIn();
+        signInTask.addOnSuccessListener(new OnSuccessListener<AuthHuaweiId>() {
+            @Override
+            public void onSuccess(AuthHuaweiId authHuaweiId) {
+                Toast.makeText(getContext(), authHuaweiId.getDisplayName().toString(), Toast.LENGTH_SHORT).show();
+                // create a new user
+                Student student = new Student(authHuaweiId.getDisplayName(), authHuaweiId.getDisplayName())
+                        .withEmail(authHuaweiId.getDisplayName())
+                        .withPassword("");
+
+                UserRegistry.getInstance().addNewStudent(student);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("User", student);
+                Navigation.findNavController(getView()).navigate(R.id.nav_quizzes, bundle);
+            }
+        });
+
+        signInTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(Exception e) {
+                startActivityForResult(mAuthManager.getSignInIntent(), 5000);
+            }
+        });
+    }
+
+
+    // sign out
+
+    private void signOut(){
+        Task<Void> task = mAuthManager.signOut();
+
+        task.addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(Task<Void> task) {
+
+            }
+        });
+
+    }
+
 
     private void signInCode() {
         mAuthParam = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
@@ -90,9 +135,33 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == 5000){
+            Task<AuthHuaweiId> task = HuaweiIdAuthManager.parseAuthResultFromIntent(data);
+            if(task.isSuccessful()){
+                task.getResult(); // return authHuaweiID;
+
+                // create a new user
+                Student student = new Student(task.getResult().getDisplayName(), task.getResult().getDisplayName())
+                        .withEmail(task.getResult().getDisplayName())
+                        .withPassword("");
+
+                UserRegistry.getInstance().addNewStudent(student);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("User", student);
+                Navigation.findNavController(getView()).navigate(R.id.nav_quizzes, bundle);
+            }
+            else{
+                ApiException exp = (ApiException) task.getException();
+                Toast.makeText(getContext(), String.valueOf(exp.getStatusCode()), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    @Override
     public void onAuthenticatedUser(Student student) {
         Bundle bundle = new Bundle();
-        System.out.println("Found user" + student.getName());
         bundle.putSerializable("User", student);
         Navigation.findNavController(getView()).navigate(R.id.nav_quizzes, bundle);
     }

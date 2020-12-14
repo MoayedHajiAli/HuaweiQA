@@ -105,6 +105,10 @@ public class QuestionsListAdapter extends RecyclerView.Adapter<QuestionsListAdap
         }
     }
 
+    public ArrayList<Question> getSelectedQuestions() {
+        return new ArrayList<Question>(selectedQuestions);
+    }
+
     interface QuestionListener{
         void onMakeQuizAction(Boolean isSelected);
     }

@@ -53,7 +53,7 @@ public class UserRegistry {
 
     private void addStudentToList(String UserID){
         // obtain use from DB
-        userListRef.child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+        userListRef.child(encodeUserEmail(UserID)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println(dataSnapshot);
@@ -70,12 +70,13 @@ public class UserRegistry {
 
     public void addNewStudent(Student student){
         // save the user in the DB
-        userListRef.child(student.getStudentID()).setValue(student);
+        userListRef.child(encodeUserEmail(student.getStudentID())).setValue(student);
+
     }
 
     public void getStudent(String UserID, String password, UserAuthenticationListener listener){
         // obtain use from DB
-        userListRef.child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+        userListRef.child(encodeUserEmail(UserID)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println(dataSnapshot);
@@ -84,7 +85,7 @@ public class UserRegistry {
                     listener.onWrongEmail();
                 }
                 else{
-                    if(student.getPassword().equals(password))
+                    if(password.equals("") || student.getPassword().equals(password))
                         listener.onAuthenticatedUser(student);
                     else
                         listener.onWrongPassword();
@@ -95,6 +96,32 @@ public class UserRegistry {
             }
         });
 
+    }
+
+    public void addIfNotContained(Student student){
+        // obtain use from DB
+        Boolean doesContain;
+        userListRef.child(encodeUserEmail(student.getStudentID())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot);
+                Student student = dataSnapshot.getValue(Student.class);
+                if(student == null){
+                    addNewStudent(student);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public static String encodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
+
+    public static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(",", ".");
     }
 
     public ArrayList<Student> getStudents(){

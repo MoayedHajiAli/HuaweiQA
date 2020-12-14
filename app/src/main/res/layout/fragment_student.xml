@@ -1,78 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:id="@+id/layoutStudentView"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutStudentView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:padding="4dp">
 
     <View
+        android:id="@+id/studentViewBackground"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/studentViewBackground"
         android:background="@drawable/student_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.makeramen.roundedimageview.RoundedImageView-->
-<!--        android:layout_width="90dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_marginStart="15dp"-->
-<!--        android:id="@+id/studentImg"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:src="@drawable/hwid_auth_button_normal"-->
-<!--        android:scaleType="centerInside"-->
-<!--        android:background="@color/black"-->
-<!--        app:riv_border_color="@color/emui_color_gray_1"-->
-<!--        app:riv_corner_radius="20dp">-->
-<!--    </com.makeramen.roundedimageview.RoundedImageView>-->
+    <!--    <com.makeramen.roundedimageview.RoundedImageView-->
+    <!--        android:layout_width="90dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginStart="15dp"-->
+    <!--        android:id="@+id/studentImg"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        android:src="@drawable/hwid_auth_button_normal"-->
+    <!--        android:scaleType="centerInside"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:riv_border_color="@color/emui_color_gray_1"-->
+    <!--        app:riv_corner_radius="20dp">-->
+    <!--    </com.makeramen.roundedimageview.RoundedImageView>-->
 
-    <ImageView
-        android:layout_width="90dp"
+    <ImageButton
+        android:id="@+id/studentImg"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="15dp"
-        android:id="@+id/studentImg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/hwid_auth_button_normal"
+        android:background="@drawable/circle_background"
         android:scaleType="centerInside"
-        android:background="@color/black"/>
+        android:src="@drawable/hwid_auth_button_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/student_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studentImg"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
+        android:layout_marginStart="24dp"
         android:text="Student Name"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/student_score"
+        app:layout_constraintStart_toEndOf="@+id/studentImg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/studentViewBackground"
+        app:layout_constraintStart_toEndOf="@+id/studentImg"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/student_score"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studentImg"
-        app:layout_constraintTop_toBottomOf="@id/student_name"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
         android:text="Score: 40"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/student_name"
+        app:layout_constraintTop_toBottomOf="@+id/student_name" />
 
     <ImageView
         android:id="@+id/isSelectedStudent"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_selection_24"
-        app:layout_constraintTop_toTopOf="@id/student_name"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/student_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="@id/student_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

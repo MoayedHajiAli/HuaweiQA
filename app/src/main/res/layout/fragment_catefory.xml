@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="100dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_margin="12dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/category_icon"
-        android:layout_width="90dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/upsdk_blue_text_007dff"></ImageView>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/category_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginRight="-94dp"
+        android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/category_icon"
-        android:paddingLeft="10dp"
-        android:text="Category Name"
-        android:textSize="30sp"></TextView>
+        tools:text="Category Name"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/category_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/category_icon"
+        app:layout_constraintTop_toTopOf="@+id/category_icon"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

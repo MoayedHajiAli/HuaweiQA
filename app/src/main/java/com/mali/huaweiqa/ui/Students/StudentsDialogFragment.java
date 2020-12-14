@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,15 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.quizzes.Quiz;
+
 import java.util.ArrayList;
 
 public class StudentsDialogFragment extends DialogFragment {
 
-    private static final String TAG = "MyCustomDialog";
+    private static final String TAG = "QuizConfiguration";
     private StudentViewModel teacherViewModel;
-//    public OnInputSelected mOnInputSelected;
+    private Quiz quiz;
     private Button bConfirm;
 
+    public StudentsDialogFragment(Quiz quiz){
+        this.quiz = quiz;
+    }
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -51,54 +57,18 @@ public class StudentsDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 // make a new quiz and add it to all the selected studetns
-//                ArrayList<> adapter.getSelectedStudents();
+                ArrayList<Student> students =  adapter.getSelectedStudents();
+                for (Student student : students){
+                    student.getQuizzes().add(quiz);
+                }
+                Toast.makeText(getContext(), "Quiz added to selected students", Toast.LENGTH_SHORT).show();
                 getDialog().dismiss();
             }
         });
 
         return root;
 
-//        mActionCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick: closing dialog");
-//                getDialog().dismiss();
-//            }
-//        });
-//
-//        mActionOk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick: capturing input.");
-//
-//                String input = mInput.getText().toString();
-//                if (!input.equals("")) {
-////
-////                    //Easiest way: just set the value.
-////                    MainFragment fragment = (MainFragment) getActivity().getFragmentManager().findFragmentByTag("MainFragment");
-////                    fragment.mInputDisplay.setText(input);
-//
-//                    mOnInputSelected.sendInput(input);
-//                }
-//
-//
-//                getDialog().dismiss();
-//            }
-//        });
-
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        try {
-//            mOnInputSelected = (OnInputSelected) getTargetFragment();
-//        } catch (ClassCastException e) {
-//            Log.e(TAG, "onAttach: ClassCastException : " + e.getMessage());
-//        }
-//    }
-//
-//    public interface OnInputSelected {
-//        void sendInput(String input);
-//    }
+
 }
