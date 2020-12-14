@@ -38,6 +38,7 @@ public class SignupFragment extends Fragment {
                         .withEmail(email.getText().toString())
                         .withPassword(password.getText().toString());
                 UserRegistry.getInstance().addNewUser(user);
+                getActivity().onBackPressed();
             }
         });
 

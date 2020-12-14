@@ -9,6 +9,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 import com.mali.huaweiqa.domain.users_profile.Teacher;
+import com.mali.huaweiqa.domain.users_profile.UserRegistry;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: For now call the getInstance in order to load the data
         QuestionsLibrary.getInstance();
+//        UserRegistry.getInstance();
+
         teacher = (Teacher) getIntent().getSerializableExtra("User");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

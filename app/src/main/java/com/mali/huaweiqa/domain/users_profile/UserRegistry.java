@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.huawei.hms.hwid.A;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,14 @@ public class UserRegistry {
     private String STUDENTS_LIST = "STUDENTS_LIST";
     private final FirebaseDatabase database;
     private final DatabaseReference userListRef;
+    private ArrayList<Student> allStudents;
 
     private UserRegistry(){
         // retrieve quizzes from the database
         this.database = FirebaseDatabase.getInstance();
         this.userListRef = database.getReference().child(USER_LIST).child(STUDENTS_LIST);
+        this.allStudents = new ArrayList<>();
+        loadStudents();
     }
 
 
@@ -30,6 +34,24 @@ public class UserRegistry {
         return _instance;
     }
 
+    private void loadStudents(){
+        userListRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    System.out.println(snapshot);
+                    if(snapshot != null){
+                        Student student = snapshot.getValue(Student.class);
+                        allStudents.add((student));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
     public void addNewUser(User user){
         // save the user in the DB
         userListRef.child(user.getUserID()).setValue(user);
@@ -60,22 +82,7 @@ public class UserRegistry {
     }
 
     public ArrayList<Student> getStudents(){
-
-        ArrayList<Student> students = new ArrayList<>();
-        userListRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Student student = snapshot.getValue(Student.class);
-                    students.add((student));
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-        return students;
+        return this.allStudents;
     }
     public interface UserAuthenticationListener{
         void onAuthenticatedUser(Student student);
