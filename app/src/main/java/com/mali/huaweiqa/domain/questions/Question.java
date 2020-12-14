@@ -10,7 +10,7 @@ public class Question {
     private String questionBody;
     private ArrayList<String> choices;
     private Integer correctAnswer;
-    Integer score;
+    private Integer score;
 
     public Question(){
 
@@ -30,9 +30,12 @@ public class Question {
         return choices;
     }
 
-    public String getCorrectAnswers() {
+    public String getCorrectAnswerBody() {
         return choices.get(this.correctAnswer);
     }
+
+    public Integer getCorrectAnswer() {
+        return this.correctAnswer; }
 
     public Integer getScore() {
         return score;
@@ -53,4 +56,5 @@ public class Question {
     public void setScore(Integer score) {
         this.score = score;
     }
+
 }

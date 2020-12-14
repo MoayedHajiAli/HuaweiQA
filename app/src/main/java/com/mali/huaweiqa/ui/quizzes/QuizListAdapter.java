@@ -1,5 +1,6 @@
 package com.mali.huaweiqa.ui.quizzes;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
+import com.mali.huaweiqa.domain.quizzes.QuizSession;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizListViewHolder>{
     private ArrayList<Quiz> quizzes;
@@ -70,6 +73,10 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizLi
                 public void onClick(View v) {
                     // take that quiz
                     System.out.println("taking the quiz..");
+                    Bundle bundle = new Bundle();
+                    System.out.println(quiz.getDuration());
+                    bundle.putSerializable("Quiz", new QuizSession(quiz));
+                    Navigation.findNavController(v).navigate(R.id.nav_quiz_questions, bundle);
                     quiz.setTaken(true);
                 }
             });

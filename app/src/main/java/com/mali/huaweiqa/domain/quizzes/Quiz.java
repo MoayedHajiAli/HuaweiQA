@@ -3,6 +3,7 @@ package com.mali.huaweiqa.domain.quizzes;
 
 import com.mali.huaweiqa.domain.questions.Question;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -54,5 +55,17 @@ public class Quiz {
 
     public boolean isTaken() {
         return isTaken;
+    }
+
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
     }
 }
