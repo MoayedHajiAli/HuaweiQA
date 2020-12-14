@@ -89,7 +89,7 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
         signInTask.addOnSuccessListener(new OnSuccessListener<AuthHuaweiId>() {
             @Override
             public void onSuccess(AuthHuaweiId authHuaweiId) {
-                Toast.makeText(getContext(), authHuaweiId.getDisplayName().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Welcome " + authHuaweiId.getDisplayName().toString(), Toast.LENGTH_SHORT).show();
                 // create a new user
                 Student student = new Student(authHuaweiId.getDisplayName(), authHuaweiId.getDisplayName())
                         .withEmail(authHuaweiId.getDisplayName())

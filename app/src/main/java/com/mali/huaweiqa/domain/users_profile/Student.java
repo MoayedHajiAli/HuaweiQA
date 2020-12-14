@@ -29,8 +29,13 @@ public class Student implements Serializable {
         setName(name);
         setEmail(email);
         setStudentID(StudentID);
-        this.email = "";
+        quizzes = new ArrayList<>();
+        totalScore = 0;
         this.password = "";
+        this.email = "";
+        // by default add two welcome quizzes
+        quizzes.add(new Quiz(200, QuestionsLibrary.getInstance().getCategories().get(0).getCategoryQuestions()));
+        quizzes.add(new Quiz(200, QuestionsLibrary.getInstance().getCategories().get(1).getCategoryQuestions()));
     }
 
     public void setTotalScore(Integer totalScore) {
