@@ -72,6 +72,7 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
         else{
             // finish the quiz
             Toast.makeText(getContext(), "You score is" + String.valueOf(quizSession.getScore()), Toast.LENGTH_SHORT).show();
+            System.out.println(quizSession.getScore());
             getActivity().getFragmentManager().popBackStack();
         }
 

@@ -17,6 +17,11 @@ public class QuestionsCategory {
         this.categoryQuestions = new ArrayList<>();
     }
 
+    public QuestionsCategory(String categoryTitle, ArrayList<Question> categoryQuestions) {
+        this.categoryTitle = categoryTitle;
+        this.categoryQuestions = categoryQuestions;
+    }
+
     public String getCategoryTitle() {
         return categoryTitle;
     }

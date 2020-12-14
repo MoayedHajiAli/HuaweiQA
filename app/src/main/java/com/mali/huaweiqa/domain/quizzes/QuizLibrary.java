@@ -13,7 +13,6 @@ import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class QuizLibrary {
 
@@ -49,9 +48,6 @@ public class QuizLibrary {
             _instances.put(id, new QuizLibrary(id));
             // add dummy quizzes
             _instances.get(id).quizzes.addQuiz(new Quiz(100, QuestionsLibrary.getInstance().getCategory(0).getCategoryQuestions()));
-            _instances.get(id).quizzes.addQuiz(new Quiz(200, QuestionsLibrary.getInstance().getCategory(1).getCategoryQuestions()));
-            _instances.get(id).quizzes.addQuiz(new Quiz(300, QuestionsLibrary.getInstance().getCategory(2).getCategoryQuestions()));
-            _instances.get(id).quizzes.addQuiz(new Quiz(400, QuestionsLibrary.getInstance().getCategory(3).getCategoryQuestions()));
         }
         return _instances.get(id);
     }
