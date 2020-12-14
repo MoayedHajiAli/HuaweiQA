@@ -18,6 +18,10 @@ public class Quiz implements Serializable{
     private ArrayList<Question> questions;
     private boolean isTaken;
 
+    public Quiz(){
+        this.questions = new ArrayList<>();
+        this.duration = 0;
+    }
     public Quiz(Integer duration, ArrayList<Question> questions) {
         this.duration = duration;
         this.questions = questions;
