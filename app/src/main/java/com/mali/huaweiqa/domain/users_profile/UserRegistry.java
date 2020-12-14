@@ -5,9 +5,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.huawei.hms.hwid.A;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 public class UserRegistry {
 
@@ -38,13 +39,10 @@ public class UserRegistry {
         userListRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    System.out.println(snapshot);
-                    if(snapshot != null){
-                        Student student = snapshot.getValue(Student.class);
-                        allStudents.add((student));
-                    }
+                    HashMap<String, String> tmp = (HashMap<String, String>) snapshot.getValue();
+                    System.out.println(tmp);
+                    addStudentToList(tmp.get("studentID"));
                 }
             }
             @Override
@@ -52,9 +50,27 @@ public class UserRegistry {
             }
         });
     }
-    public void addNewUser(User user){
+
+    private void addStudentToList(String UserID){
+        // obtain use from DB
+        userListRef.child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot);
+                Student student = dataSnapshot.getValue(Student.class);
+                if(student != null){
+                    allStudents.add(student);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void addNewStudent(Student student){
         // save the user in the DB
-        userListRef.child(user.getUserID()).setValue(user);
+        userListRef.child(student.getStudentID()).setValue(student);
     }
 
     public void getStudent(String UserID, String password, UserAuthenticationListener listener){

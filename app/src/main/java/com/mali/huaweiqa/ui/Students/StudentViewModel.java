@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.Teacher;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
 
 import java.util.ArrayList;

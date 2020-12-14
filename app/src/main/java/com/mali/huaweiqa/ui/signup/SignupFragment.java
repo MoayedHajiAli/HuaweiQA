@@ -12,9 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.User;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 public class SignupFragment extends Fragment {
 
@@ -34,10 +33,10 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //create a new user
-                User user = new Student(name.getText().toString(), email.getText().toString())
+                com.mali.huaweiqa.domain.Students_profile.Student student = (Student) (new Student(name.getText().toString(), email.getText().toString())
                         .withEmail(email.getText().toString())
-                        .withPassword(password.getText().toString());
-                UserRegistry.getInstance().addNewUser(user);
+                        .withPassword(password.getText().toString()));
+                UserRegistry.getInstance().addNewStudent(student);
                 getActivity().onBackPressed();
             }
         });

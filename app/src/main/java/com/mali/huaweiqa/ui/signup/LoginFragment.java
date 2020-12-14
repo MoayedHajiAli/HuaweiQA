@@ -20,10 +20,8 @@ import com.huawei.hms.support.hwid.request.HuaweiIdAuthParams;
 import com.huawei.hms.support.hwid.request.HuaweiIdAuthParamsHelper;
 import com.huawei.hms.support.hwid.service.HuaweiIdAuthService;
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.Teacher;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
-import com.mali.huaweiqa.domain.users_profile.UserType;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 public class LoginFragment extends Fragment implements UserRegistry.UserAuthenticationListener {
 

@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.Teacher;
+import com.mali.huaweiqa.domain.Students_profile.Student;
 
 import java.util.ArrayList;
 

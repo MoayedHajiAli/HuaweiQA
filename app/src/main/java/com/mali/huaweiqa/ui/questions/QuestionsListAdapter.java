@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.questions.Question;
-import com.mali.huaweiqa.domain.users_profile.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;

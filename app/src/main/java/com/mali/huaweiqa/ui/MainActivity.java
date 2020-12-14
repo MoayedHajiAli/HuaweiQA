@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: For now call the getInstance in order to load the data
         QuestionsLibrary.getInstance();
-//        UserRegistry.getInstance();
+        UserRegistry.getInstance();
 
         teacher = (Teacher) getIntent().getSerializableExtra("User");
         super.onCreate(savedInstanceState);

@@ -12,9 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.Teacher;
-
+import com.mali.huaweiqa.domain.Students_profile.Student;
 import java.util.ArrayList;
 
 public class StudentFragment extends Fragment {

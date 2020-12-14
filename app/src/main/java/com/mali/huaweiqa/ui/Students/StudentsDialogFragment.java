@@ -16,9 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.users_profile.Student;
-import com.mali.huaweiqa.domain.users_profile.Teacher;
-
+import com.mali.huaweiqa.domain.Students_profile.Student;
 import java.util.ArrayList;
 
 public class StudentsDialogFragment extends DialogFragment {
@@ -52,7 +50,8 @@ public class StudentsDialogFragment extends DialogFragment {
         bConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(adapter.getSelectedStudents().get(0).getName());
+                // make a new quiz and add it to all the selected studetns
+//                ArrayList<> adapter.getSelectedStudents();
                 getDialog().dismiss();
             }
         });
