@@ -1,18 +1,25 @@
 package com.mali.huaweiqa.domain.quizzes;
 
 import com.mali.huaweiqa.domain.questions.Question;
+import com.mali.huaweiqa.domain.users_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.UserRegistry;
 
 import java.io.Serializable;
 
+/**
+ * This class serves as a quiz session. It handles the logic of the quiz and update the score of the user on DB once the quiz finishes
+ */
 public class QuizSession implements Serializable {
 
     private int score;
     private Quiz quiz;
     private double startTime;
     private Question currentQuestion;
+    private Student student;
 
-    public QuizSession(Quiz quiz){
+    public QuizSession(Quiz quiz, Student student){
         this.quiz = quiz;
+        this.student = student;
     }
 
     public void start(){
@@ -55,5 +62,12 @@ public class QuizSession implements Serializable {
         return currentQuestion;
     }
 
+    public void finishQuiz(){
+        student.setTotalScore(student.getTotalScore() + getScore());
+        quiz.setTaken(true);
+        student.getQuizzes().remove(quiz);
 
+        // update student in database
+        UserRegistry.getInstance().addNewStudent(student);
+    }
 }

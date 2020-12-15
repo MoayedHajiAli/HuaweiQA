@@ -19,6 +19,7 @@ import java.util.Arrays;
 /**
  * A singleton library that hold all questions categories in the application.
  */
+
 public class QuestionsLibrary {
     private static QuestionsLibrary _instance;
     private String CATEGORIES_LIST = "CATEGORIES_LIST";
@@ -83,6 +84,11 @@ public class QuestionsLibrary {
         return this.categories.getCategories().get(ind);
     }
 
+    /**
+     * Add question the library and update on database
+     * @param categoryTitle
+     * @param question
+     */
     public void addQuestion(String categoryTitle, Question question){
         this.getCategory(categoryTitle).addQuestion(question);
         categoryRef.setValue(categories);

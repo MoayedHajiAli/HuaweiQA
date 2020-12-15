@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.mali.huaweiqa.domain.quizzes.Quiz;
 import com.mali.huaweiqa.domain.quizzes.QuizLibrary;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 
 import java.util.ArrayList;
 

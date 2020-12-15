@@ -18,8 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/quizConfirmation"
+        android:background="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/students_list"
+        android:textAlignment="center"
         android:text="Confirm"
         android:visibility="gone"
         />

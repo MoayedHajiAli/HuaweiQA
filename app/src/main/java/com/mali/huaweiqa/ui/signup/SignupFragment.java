@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 
+/**
+ * A fragment that handles sign-up
+ */
 public class SignupFragment extends Fragment {
 
     private EditText name, email, password;
@@ -33,7 +36,7 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //create a new user
-                com.mali.huaweiqa.domain.Students_profile.Student student = (Student) (new Student(name.getText().toString(), email.getText().toString())
+                com.mali.huaweiqa.domain.users_profile.Student student = (Student) (new Student(name.getText().toString(), email.getText().toString())
                         .withEmail(email.getText().toString())
                         .withPassword(password.getText().toString()));
                 UserRegistry.getInstance().addNewStudent(student);

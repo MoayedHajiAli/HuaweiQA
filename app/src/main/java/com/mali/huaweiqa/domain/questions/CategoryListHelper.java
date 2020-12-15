@@ -2,6 +2,10 @@ package com.mali.huaweiqa.domain.questions;
 
 import java.util.ArrayList;
 
+/**
+ * This class serves as a list helper for storing categories on Firebase.
+ */
+
 public class CategoryListHelper {
 
     private ArrayList<QuestionsCategory> categories;

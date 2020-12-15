@@ -17,8 +17,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
+import com.mali.huaweiqa.domain.users_profile.UserRegistry;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public class StudentsDialogFragment extends DialogFragment {
                 ArrayList<Student> students =  adapter.getSelectedStudents();
                 for (Student student : students){
                     student.getQuizzes().add(quiz);
+                }
+
+                //update all studetns in database
+                for (Student student : students){
+                    UserRegistry.getInstance().addNewStudent(student);
                 }
                 Toast.makeText(getContext(), "Quiz added to selected students", Toast.LENGTH_SHORT).show();
                 getDialog().dismiss();

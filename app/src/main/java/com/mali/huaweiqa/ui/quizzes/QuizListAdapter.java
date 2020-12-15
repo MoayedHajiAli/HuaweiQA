@@ -15,14 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
 import com.mali.huaweiqa.domain.quizzes.QuizSession;
+import com.mali.huaweiqa.domain.users_profile.Student;
 
 import java.util.ArrayList;
 
 public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizListViewHolder>{
     private ArrayList<Quiz> quizzes;
+    private Student student;
 
-    public  QuizListAdapter(){
+    public  QuizListAdapter(Student student){
         this.quizzes = new ArrayList<>();
+        this.student = student;
     }
 
     @NonNull
@@ -66,18 +69,15 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizLi
         }
 
         void bindQuiz(final Quiz quiz){
-            quizDuration.setText(quiz.getDuration().toString());
-            quizQuestionNum.setText(quiz.questionTotal().toString());
+            quizDuration.setText(quiz.getDuration().toString() + " Seconds");
+            quizQuestionNum.setText(quiz.questionTotal().toString() + " Questions");
             layoutView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // take that quiz
-                    System.out.println("taking the quiz..");
                     Bundle bundle = new Bundle();
-                    System.out.println(quiz.getDuration());
-                    bundle.putSerializable("Quiz", new QuizSession(quiz));
+                    bundle.putSerializable("Quiz", new QuizSession(quiz, student));
                     Navigation.findNavController(v).navigate(R.id.nav_quiz_questions, bundle);
-                    quiz.setTaken(true);
                 }
             });
         }

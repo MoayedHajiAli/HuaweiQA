@@ -1,8 +1,10 @@
 package com.mali.huaweiqa.ui.signup;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,9 +14,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.FirebaseDatabase;
 import com.huawei.hms.common.ApiException;
 import com.huawei.hmf.tasks.OnCompleteListener;
 import com.huawei.hmf.tasks.OnFailureListener;
@@ -27,9 +36,13 @@ import com.huawei.hms.support.hwid.result.AuthHuaweiId;
 import com.huawei.hms.support.hwid.service.HuaweiIdAuthService;
 import com.mali.huaweiqa.R;
 import com.mali.huaweiqa.domain.users_profile.UserRegistry;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
+import com.mali.huaweiqa.ui.MainActivity;
 
-public class LoginFragment extends Fragment implements UserRegistry.UserAuthenticationListener {
+/**
+ * A fragment that handles sign-in sign-out
+ */
+public class LoginFragment extends Fragment implements UserRegistry.UserAuthenticationListener, NavigationView.OnNavigationItemSelectedListener {
 
     //Log tag
     public static final String TAG = "LoginActivity";
@@ -43,6 +56,8 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).navigationView.setNavigationItemSelectedListener(this);
+
         View root = inflater.inflate(R.layout.login_main, container, false);
         loginBT = root.findViewById(R.id.login);
         HMSLoginBT = root.findViewById(R.id.hms_login);
@@ -61,12 +76,18 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
             }
         });
 
-        HMSLoginBT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
+        // disable if not Huawei phone
+        Toast.makeText(getContext(), Build.MANUFACTURER.toString(), Toast.LENGTH_SHORT).show();
+        System.out.println(Build.MANUFACTURER);
+        if(Build.MANUFACTURER.toLowerCase().equals("huawei")) {
+            HMSLoginBT.setVisibility(View.VISIBLE);
+            HMSLoginBT.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    signIn();
+                }
+            });
+        }
 
         signUpTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +112,12 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
             public void onSuccess(AuthHuaweiId authHuaweiId) {
                 Toast.makeText(getContext(), "Welcome " + authHuaweiId.getDisplayName().toString(), Toast.LENGTH_SHORT).show();
                 // create a new user
-                Student student = new Student(authHuaweiId.getDisplayName(), authHuaweiId.getDisplayName())
-                        .withEmail(authHuaweiId.getDisplayName())
+                Student student = new Student(authHuaweiId.getEmail(), authHuaweiId.getDisplayName())
+                        .withEmail(authHuaweiId.getEmail())
                         .withPassword("");
 
-                UserRegistry.getInstance().addNewStudent(student);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("User", student);
-                Navigation.findNavController(getView()).navigate(R.id.nav_quizzes, bundle);
+                UserRegistry.getInstance().addIfNotContained(student);
+                UserRegistry.getInstance().getStudent(student.getStudentID(), "", LoginFragment.this);
             }
         });
 
@@ -110,29 +129,14 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
         });
     }
 
-
-    // sign out
-
-    private void signOut(){
-        Task<Void> task = mAuthManager.signOut();
-
-        task.addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(Task<Void> task) {
-
-            }
-        });
-
+    public void signOut(){
+        Intent mainActivity = new Intent(getActivity(), MainActivity.class);
+        getActivity().startActivity(mainActivity);
+        mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainActivity);
     }
 
-
-    private void signInCode() {
-        mAuthParam = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
-                .setProfile()
-                .setAuthorizationCode()
-                .createParams();
-        mAuthManager = HuaweiIdAuthManager.getService(getContext(), mAuthParam);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -174,5 +178,26 @@ public class LoginFragment extends Fragment implements UserRegistry.UserAuthenti
     @Override
     public void onWrongEmail() {
         Toast.makeText(getContext(), "Wrong Email", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+        NavController navCo = navHostFragment.getNavController();
+        switch (item.getItemId()){
+            case R.id.nav_signout:
+                Toast.makeText(getContext(), "Signing out", Toast.LENGTH_SHORT).show();
+                signOut();
+                break;
+            case R.id.nav_students:
+                navCo.navigate(R.id.nav_students);
+            case R.id.nav_categories:
+                navCo.navigate(R.id.nav_categories);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

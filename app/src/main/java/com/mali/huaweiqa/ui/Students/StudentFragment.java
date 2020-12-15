@@ -1,20 +1,28 @@
 package com.mali.huaweiqa.ui.Students;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 import java.util.ArrayList;
 
+/**
+ * List all students in the system for the teacher
+ */
 public class StudentFragment extends Fragment {
 
     private StudentViewModel teacherViewModel;
@@ -22,39 +30,11 @@ public class StudentFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-//        // create dummy teacher for now
-//        Teacher teacher = new Teacher("Moayed",  null);
-//        Student student = new Student("Walid", null);
-//        student.setTotalScore(80);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
-//
-//        student = new Student("abd", null);
-//        student.setTotalScore(10);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
-//
-//        student = new Student("omar", null);
-//        student.setTotalScore(-5);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
-//
-//        student = new Student("wajdy", null);
-//        student.setTotalScore(15);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
-//
-//        student = new Student("mufuck", null);
-//        student.setTotalScore(-100);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
-//
-//
-//        student = new Student("noor", null);
-//        student.setTotalScore(65);
-//        teacher.addStudentRequest(student);
-//        teacher.approveStudent(student);
+        NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
+        navigationView.setVisibility(View.VISIBLE);
 
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.VISIBLE);
         teacherViewModel =
                 new ViewModelProvider(this).get(StudentViewModel.class);
         View root = inflater.inflate(R.layout.student_main, container, false);
@@ -69,6 +49,14 @@ public class StudentFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Log.i("BACK PRESSED", "BACK PRESSED - No action taken");
+            }
+        });
         return root;
     }
+
 }

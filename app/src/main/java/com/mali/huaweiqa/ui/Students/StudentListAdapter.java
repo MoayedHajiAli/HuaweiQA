@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mali.huaweiqa.R;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -76,6 +76,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
         void bindStudent(final Student student){
             nameView.setText(student.getName());
+            scoreView.setText("Score: " + student.getTotalScore().toString());
+
             if(selectedStudents.contains(student)){
                 isSelectedImg.setVisibility(View.VISIBLE);
                 layoutView.setBackgroundResource(R.drawable.student_selected_background);

@@ -1,4 +1,4 @@
-package com.mali.huaweiqa.domain.Students_profile;
+package com.mali.huaweiqa.domain.users_profile;
 
 import com.mali.huaweiqa.domain.questions.QuestionsLibrary;
 import com.mali.huaweiqa.domain.quizzes.Quiz;

@@ -8,8 +8,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.mali.huaweiqa.domain.Students_profile.Student;
+import com.mali.huaweiqa.domain.users_profile.Student;
 
+/**
+ * Handles user registry and authentication
+ */
 public class UserRegistry {
 
     private static UserRegistry _instance;
@@ -68,12 +71,23 @@ public class UserRegistry {
         });
     }
 
+    /**
+     * Register new student in the system
+     * @param student
+     */
     public void addNewStudent(Student student){
         // save the user in the DB
         userListRef.child(encodeUserEmail(student.getStudentID())).setValue(student);
 
     }
 
+    /**
+     * Authenticate a user login. In case of success it will call onAuthenticatedUser from the lister.
+     * In case wrong email, or password it will it will call onWrongEmail, or onWrongPassword.
+     * @param UserID
+     * @param password
+     * @param listener
+     */
     public void getStudent(String UserID, String password, UserAuthenticationListener listener){
         // obtain use from DB
         userListRef.child(encodeUserEmail(UserID)).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -98,6 +112,10 @@ public class UserRegistry {
 
     }
 
+    /**
+     * Register a new user if it is not already in the system
+     * @param student
+     */
     public void addIfNotContained(Student student){
         // obtain use from DB
         Boolean doesContain;
@@ -117,8 +135,9 @@ public class UserRegistry {
     }
 
     public static String encodeUserEmail(String userEmail) {
-        return userEmail.replace(".", ",");
-    }
+        userEmail =  userEmail.replace(".", ",");
+        userEmail =  userEmail.replace("*", ",");
+        return userEmail; }
 
     public static String decodeUserEmail(String userEmail) {
         return userEmail.replace(",", ".");

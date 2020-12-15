@@ -16,6 +16,9 @@ import com.mali.huaweiqa.domain.questions.Question;
 import com.mali.huaweiqa.domain.quizzes.Quiz;
 import com.mali.huaweiqa.domain.quizzes.QuizSession;
 
+/**
+ * A fragment where the student take the quiz
+ */
 public class QuizFragment extends Fragment implements View.OnClickListener {
 
     private QuizSession quizSession;
@@ -64,13 +67,13 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
         }
         if(!quizSession.isFinished()){
             // update the fields to the next question
-            System.out.println("Starting a new question");
             quizSession.evaluateAnswer(chosenAnswer);
             updateFields(quizSession.nextQuestion());
         }
         else{
             // finish the quiz
             Toast.makeText(getContext(), "You score is " + String.valueOf(quizSession.getScore()), Toast.LENGTH_SHORT).show();
+            quizSession.finishQuiz();
             getActivity().onBackPressed();
         }
 
